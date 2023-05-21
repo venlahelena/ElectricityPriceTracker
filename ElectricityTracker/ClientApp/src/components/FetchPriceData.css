@@ -1,0 +1,33 @@
+﻿.price-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.price-info-item {
+    flex: 1;
+}
+
+.table-container {
+    overflow: auto;
+    height: 500px; /* Set the desired height for the scrollable area */
+}
+
+.table-wrapper {
+    width: max-content;
+}
+
+.table-container th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.table-container th:nth-child(1) {
+    left: 0;
+}
+
+.table-container table {
+    min-width: 1200px; /* Set the minimum width for the table */
+}
