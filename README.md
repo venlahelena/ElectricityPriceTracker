@@ -9,6 +9,7 @@ The application is built using the following technologies:
 - [ASP.NET Core](https://get.asp.net/) and C# for cross-platform server-side code
 - [React](https://facebook.github.io/react/) for client-side code
 - [Bootstrap](http://getbootstrap.com/) for layout and styling
+- [Porssisahko.net](https://porssisahko.net/api) for api
 
 ## Getting Started
 
