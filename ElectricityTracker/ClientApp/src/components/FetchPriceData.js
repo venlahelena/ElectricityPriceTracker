@@ -78,7 +78,7 @@ const FetchPriceData = () => {
                             <thead>
                                 <tr>
                                     <th>Date and Time</th>
-                                    <th>Price</th>
+                                    <th>Price (snt/kWh)</th>
                                 </tr>
                             </thead>
                             <tbody>

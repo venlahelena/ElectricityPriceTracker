@@ -27,6 +27,9 @@ const Home = () => {
                     <a href="http://getbootstrap.com/">Bootstrap</a> for layout and
                     styling
                 </li>
+                <li>
+                    <a href="https://porssisahko.net/api">Porssisahko.net API</a> for API
+                </li>
             </ul>
             <p>
                 The <code>ClientApp</code> subdirectory contains the standard React
