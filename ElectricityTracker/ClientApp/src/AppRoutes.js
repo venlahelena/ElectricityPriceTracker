@@ -1,5 +1,5 @@
-import Home from "./components/Home";
-import FetchPriceData from './components/FetchPriceData';
+import Home from "./pages/Home";
+import FetchPriceData from './pages/FetchPriceData';
 
 const AppRoutes = [
   {
