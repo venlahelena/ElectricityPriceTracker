@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import PriceTable from '../components/PriceTable';
 
 import 'react-tabs/style/react-tabs.css';
 import './FetchPriceData.css';
-
 
 const FetchPriceData = () => {
     // State variables
@@ -13,6 +12,7 @@ const FetchPriceData = () => {
     const [cheapestDay, setCheapestDay] = useState(null);
     const [expensiveDay, setExpensiveDay] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const populatePriceData = () => {
         fetch('electricityprice')
@@ -27,7 +27,7 @@ const FetchPriceData = () => {
             })
             .catch(error => {
                 // Handle any error that occurred during the fetch request
-                console.log('Error fetching price data:', error);
+                setError(error);
             });
     };
 
@@ -50,7 +50,7 @@ const FetchPriceData = () => {
 
     useEffect(() => {
         populatePriceData();
-    }, []);
+    });
 
     const formatDate = (dateTimeString) => {
         const options = {
@@ -77,13 +77,46 @@ const FetchPriceData = () => {
     };
 
     const renderPriceChart = () => {
-        // Render your price chart here
-        return <div>Price Chart work in progress</div>;
+        try {
+            // Prepare chart data
+            const chartData = price.map(item => ({
+                date: formatDate(item.dateTime),
+                price: item.price,
+            }));
+
+            // Render the chart
+            return (
+                <LineChart width={1300} height={500} data={chartData}  margin={{ top: 80, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                        dataKey="date"
+                        angle={45} // Set the angle to 45 degrees
+                        textAnchor="start" // Align the labels to the start of the ticks
+                    />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="price" stroke="#8884d8" />
+                </LineChart>
+            );
+        } catch (error) {
+            // Handle any error that occurs during rendering
+            setError(error);
+            return null;
+        }
     };
 
     const renderLoadingMessage = () => {
         return <p><em>Loading price data...</em></p>;
     };
+
+    const renderErrorMessage = () => {
+        return <p>Error occurred while fetching price data.</p>;
+    };
+
+    if (error) {
+        return renderErrorMessage();
+    }
 
     return (
         <div>
@@ -99,6 +132,9 @@ const FetchPriceData = () => {
                         <Tab>Table View</Tab>
                     </TabList>
                     <TabPanel>
+                        <p className="chart-info">
+                            Hover over the chart line to view detailed date, time, and price information.
+                        </p>
                         {renderPriceChart()}
                     </TabPanel>
                     <TabPanel>
