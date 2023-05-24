@@ -31,3 +31,11 @@
 .table-container table {
     min-width: 1200px; /* Set the minimum width for the table */
 }
+
+.chart-info {
+    text-align: center; /* Center the text */
+    position: absolute; /* Position the element */
+    bottom: 45rem; /* Adjust the desired distance from the bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust horizontal centering */
+}
